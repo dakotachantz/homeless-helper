@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
+import logo from "../img/logo-white.png";
 export default class NavBar extends Component {
   render() {
     return (
       <nav className="main-nav dark transparent stick-fixed">
         <div className="full-wrapper relative clearfix">
           <div className="nav-logo-wrap local-scroll">
-            <NavLink to="mp-index.html" className="logo">
-              <img src="" alt="" />
-              Logo
+            <NavLink to="#top" className="logo">
+              <img src={logo} alt="" width="50" />
             </NavLink>
           </div>
 

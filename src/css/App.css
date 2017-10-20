@@ -1,17 +1,6 @@
 @charset "utf-8";
-/*------------------------------------------------------------------
-[Master Stylesheet]
-
-Project:    Rhythm
-Version:    2.9.5
-Last change:    10.04.2017
-Primary use:    MultiPurpose Template  
--------------------------------------------------------------------*/
-
-
 @import "et-line.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
-/* @import url(http://fonts.googleapis.com/css?family=Dosis:300,400,700); */
 @import url(https://fonts.googleapis.com/css?family=Libre+Franklin);
 
 /*------------------------------------------------------------------
@@ -196,27 +185,8 @@ html, body{
     overflow: hidden;
 }
 
-.body-masked{
-    display: none;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #fff url(../images/loader.gif) no-repeat center center;
-    z-index: 100000;    
-}
 
-.mask-delay{
-    -webkit-animation-delay: 0.75s;
-    -moz-animation-delay: 0.75s;
-    animation-delay: 0.75s;
-}
-.mask-speed{
-    -webkit-animation-duration: 0.25s !important;
-    -moz-animation-duration: 0.25s !important;
-    animation-duration: 0.25s !important;
-} 
+
 iframe{
     border: none;
 }
@@ -234,125 +204,6 @@ img:not([draggable]), embed, object, video{
     max-width: 100%;
     height: auto;
 }
-
-
-
-/* ==============================
-   Page loader
-   ============================== */
-
-
-.page-loader{
-    display:block;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #fefefe;
-    z-index: 100000;    
-}
-
-.loader{
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -25px 0 0 -25px;
-    font-size: 10px;
-    text-indent: -12345px;
-    border-top: 1px solid rgba(0,0,0, 0.08);
-    border-right: 1px solid rgba(0,0,0, 0.08);
-    border-bottom: 1px solid rgba(0,0,0, 0.08);
-    border-left: 1px solid rgba(0,0,0, 0.5);
-  
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-  
-    -webkit-animation: spinner 700ms infinite linear;
-    -moz-animation: spinner 700ms infinite linear;
-    -ms-animation: spinner 700ms infinite linear;
-    -o-animation: spinner 700ms infinite linear;
-    animation: spinner 700ms infinite linear;
-  
-    z-index: 100001;
-}
-
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@-moz-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@-o-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-
-
 
 /* ==============================
    Typography
@@ -2399,18 +2250,6 @@ a.logo:hover{
     background-repeat: repeat;
     background-size: auto;
 }
-.bg-pattern-over:before,
-.bg-pattern-over .YTPOverlay:after{
-    content: " ";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-repeat: repeat;
-    background-size: auto;
-    background-image: url(../images/pattern-bg-2.png);
-}
 .bg-gray{
     background-color: #f4f4f4;
 }
@@ -3501,41 +3340,6 @@ a.logo:hover{
     -o-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
-}
-
-/*
- * Works full view
- */
-
-.work-full{
-    display: none;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    z-index: 10000;
-}
-.work-full-load{
-    padding-top: 60px;
-}
-.work-loader{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    z-index: 10001;
-}
-.work-loader:after{
-    display: block;
-    content: " ";
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -8px 0 0 -8px;
-    background: url(../images/loader.gif) no-repeat;
 }
 
 /* Work navigation */
