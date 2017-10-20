@@ -1,78 +1,77 @@
 import React, { Component } from "react";
 import resourceHeaderImg from "../img/resource-header.jpg";
-import clothesHanger from "../img/clothes-hanger.png";
-import { GoogleApiWrapper } from "google-maps-react";
-import axios from "axios";
+// import { GoogleApiWrapper } from "google-maps-react";
+// import axios from "axios";
 // import <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap"
 // type="text/javascript"></script>
 export default class ResourcesList extends Component {
-  constructor(props) {
-    super(props);
-  }
+  //   constructor(props) {
+  //     super(props);
+  //   }
 
-  componentWillMount() {
-    const script = document.createElement("script");
+  //   componentWillMount() {
+  //     const script = document.createElement("script");
 
-    script.src =
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap";
-    script.async = true;
+  //     script.src =
+  //       "https://maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap";
+  //     script.async = true;
 
-    document.body.appendChild(script);
-    // axios
-    //   .get(
-    //     "maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap"
-    //   )
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
-    //maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap
+  //     document.body.appendChild(script);
+  //     // axios
+  //     //   .get(
+  //     //     "maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap"
+  //     //   )
+  //     //   .then(function(response) {
+  //     //     console.log(response);
+  //     //   })
+  //     //   .catch(function(error) {
+  //     //     console.log(error);
+  //     //   });
+  //     //maps.googleapis.com/maps/api/js?key=AIzaSyDJPG_wLtTrsdF_c8N_foAK7Tg0HBB01tg&callback=initMap
 
-    var map, infoWindow;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 36.174, lng: -86.767 },
-        zoom: 12
-      });
-      infoWindow = new google.maps.InfoWindow();
+  //     var map, infoWindow;
+  //     function initMap() {
+  //       map = new google.maps.Map(document.getElementById("map"), {
+  //         center: { lat: 36.174, lng: -86.767 },
+  //         zoom: 12
+  //       });
+  //       infoWindow = new google.maps.InfoWindow();
 
-      // Try HTML5 geolocation.
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
+  //       // Try HTML5 geolocation.
+  //       if (navigator.geolocation) {
+  //         navigator.geolocation.getCurrentPosition(
+  //           function(position) {
+  //             var pos = {
+  //               lat: position.coords.latitude,
+  //               lng: position.coords.longitude
+  //             };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent("Location found.");
-            infoWindow.open(map);
-            map.setCenter(pos);
-            map.setZoom(18);
-          },
-          function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          }
-        );
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-      }
-    }
+  //             infoWindow.setPosition(pos);
+  //             infoWindow.setContent("Location found.");
+  //             infoWindow.open(map);
+  //             map.setCenter(pos);
+  //             map.setZoom(18);
+  //           },
+  //           function() {
+  //             handleLocationError(true, infoWindow, map.getCenter());
+  //           }
+  //         );
+  //       } else {
+  //         // Browser doesn't support Geolocation
+  //         handleLocationError(false, infoWindow, map.getCenter());
+  //       }
+  //     }
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(
-        browserHasGeolocation
-          ? "Error: The Geolocation service failed."
-          : "Error: Your browser doesn't support geolocation."
-      );
-      infoWindow.open(map);
-    }
-  }
+  //     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  //       infoWindow.setPosition(pos);
+  //       infoWindow.setContent(
+  //         browserHasGeolocation
+  //           ? "Error: The Geolocation service failed."
+  //           : "Error: Your browser doesn't support geolocation."
+  //       );
+  //       infoWindow.open(map);
+  //     }
+  //   }
 
   render() {
     return (
@@ -168,7 +167,7 @@ export default class ResourcesList extends Component {
             background: "#fff",
             color: "black",
             zIndex: "1",
-            width: "50%",
+            width: "49%",
             minHeight: 533,
             border: "1px solid lightgray"
           }}

@@ -8,8 +8,8 @@ Last change:    10.04.2017
 Primary use:    MultiPurpose Template  
 -------------------------------------------------------------------*/
 
-/* @import "font-awesome.min.css";
-@import "et-line.css"; */
+
+@import "et-line.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
 /* @import url(http://fonts.googleapis.com/css?family=Dosis:300,400,700); */
 @import url(https://fonts.googleapis.com/css?family=Libre+Franklin);
@@ -3979,11 +3979,12 @@ a.logo:hover{
     position: relative;
     background: #111;
 }
-#map-canvas{    
-    height: 410px;
-    position: relative;
+#map-canvas{
+    /* display: flex;
+    justify-content: center; */
+    height: 533px;
     background-color: #111 !important;
-    z-index: 1;
+    margin: 0 auto;
 }
 .gm-style-cc{
     display: none !important;
@@ -3992,15 +3993,16 @@ a.logo:hover{
     color: #777;
 }
 .map-section{
-    width: 100%;
+    width: 51%;
     height: 100%;
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
     padding: 0 !important;
     background: rgba(17,17,17, .93);
     z-index: 2;
     cursor: pointer;
+    display: flex;
     
     -webkit-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);  
     -moz-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000); 
@@ -4012,12 +4014,12 @@ a.logo:hover{
     background: rgba(17,17,17, .90);
 }
 .map-toggle{
-    width: 200px;
+    width: 100%;
     height: 100px;
     position: absolute;
     top: 50%;
-    left: 50%;
-    margin: -50px 0 0 -100px;
+    /* left: 50%; */
+    /* margin: -50px 0 0 -100px; */
     color: #fff;
     text-align: center;
 }
