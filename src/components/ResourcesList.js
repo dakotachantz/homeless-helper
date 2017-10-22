@@ -1,7 +1,31 @@
 import React, { Component } from "react";
-import resourceHeaderImg from "../img/resource-header.jpg";
+import axios from "axios";
+import Map from "./Map";
 
+import resourceHeaderImg from "../img/resource-header.jpg";
+import reactScroll from "react-scroll";
+// const google = window.google;
+let Link = reactScroll.Link;
+let resources;
 export default class ResourcesList extends Component {
+  //   componentWillMount() {
+  //     axios
+  //       .get("https://data.nashville.gov/resource/8zc7-2afq.json")
+  //       .then(function(response) {
+  //         console.log(response.data);
+  //         resources = response.data.map((resource, index) => {
+  //           return (
+  //             <div key={index}>
+  //               {resource.contact} {resource.contact_type}
+  //             </div>
+  //           );
+  //         });
+  //       })
+  //       .catch(function(error) {
+  //         console.log(error);
+  //       });
+  //   }
+
   render() {
     return (
       <div>
@@ -28,10 +52,8 @@ export default class ResourcesList extends Component {
             Find Resources
           </h1>
         </header>
-        {/* <!-- Services Section --> */}
         <section
           className="page-section"
-          id="services"
           style={{
             padding: "100px 0",
             background: "#fff"
@@ -41,117 +63,126 @@ export default class ResourcesList extends Component {
             <h2 className="section-title font-alt mb-70 mb-sm-40">
               Filter By Resource
             </h2>
-
-            {/* <!-- Nav tabs --> */}
             <ul className="nav nav-tabs tpl-alt-tabs font-alt pt-30 pt-sm-0 pb-30 pb-sm-0">
               <li className="active">
-                <a href="">
+                <Link
+                  to="resources"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={700}
+                  href=""
+                >
                   <div className="alt-tabs-icon">
                     <span className="ionicons ion-android-globe" />
                   </div>
                   All
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="">
+                <Link
+                  to="resources"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={700}
+                  href=""
+                >
                   <div className="alt-tabs-icon">
                     <span className="fa fa-cutlery" />
                   </div>
                   Food
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="">
+                <Link
+                  to="resources"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={700}
+                  href=""
+                >
                   <div className="alt-tabs-icon">
                     <span className="ionicons ion-tshirt" />
                   </div>
                   Clothing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#service-development">
+                <Link
+                  to="resources"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={700}
+                  href=""
+                >
                   <div className="alt-tabs-icon">
                     <span className="ionicons ion-ios-home" />
                   </div>
                   Shelter
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#service-photography">
+                <Link
+                  to="resources"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={700}
+                  href=""
+                >
                   <div className="alt-tabs-icon">
                     <span className="fa fa-car" />
                   </div>
                   Transportation
-                </a>
+                </Link>
               </li>
             </ul>
             {/* <!-- End Nav tabs --> */}
           </div>
         </section>
-        {/* <!-- Google Map --> */}
-        <span
-          className="resourcesList"
-          style={{
-            position: "absolute",
-            background: "#fff",
-            color: "black",
-            zIndex: "1",
-            width: "49%",
-            minHeight: 533,
-            border: "1px solid lightgray"
-          }}
+        {/* <!-- Resources */}
+        <section
+          className="resources"
+          id="resources"
+          style={{ display: "flex", flexDirection: "row", minHeight: "80.1vh" }}
         >
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below. Display list of resources below.
-          Display list of resources below.
-        </span>
-        <div className="google-map">
-          <div id="map-canvas" />
-          <div className="map-section" id="map">
-            <div className="map-toggle">
-              <div className="mt-text font-alt">
-                <div
-                  style={{
-                    width: "50vw",
-                    margin: "0 auto",
-                    textAlign: "center"
-                  }}
-                >
-                  No Map data to display
+          <span
+            className="resourcesList"
+            style={{
+              background: "#fff",
+              color: "black",
+              flex: 1,
+              border: "1px solid lightgray"
+            }}
+          >
+            Display list of resources below. Display list of resources below.
+            Display list of resources below. Display list of resources below.
+            Display list of resources below. Display list of resources below.
+            Display list of resources below. Display list of resources below.
+            {resources}
+          </span>
+          <div className="google-map">
+            <div id="map-canvas" />
+            <div className="map-section" id="map">
+              <div className="map-toggle">
+                <div className="mt-text font-alt">
+                  <div
+                    style={{
+                      margin: "0 auto",
+                      textAlign: "center"
+                    }}
+                  >
+                    No Map data to display
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <Map />
+        </section>
       </div>
     );
   }

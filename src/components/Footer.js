@@ -10,11 +10,15 @@ export default class Footer extends Component {
           <div className="footer-text">
             <div className="footer-copy font-alt">
               &copy; 2017
-              <a href="https://dakotachantz.com/" target="_blank">
+              <a
+                href="https://dakotachantz.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 &nbsp;Dakota Nichols
               </a>
               &nbsp;&
-              <a href="" target="_blank">
+              <a href="" target="_blank" rel="noopener noreferrer">
                 &nbsp;Hamilton Moore
               </a>
             </div>

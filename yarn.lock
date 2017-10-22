@@ -3965,6 +3965,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+little-loader@~0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/little-loader/-/little-loader-0.1.1.tgz#516207701524e795feafa8e64cfc6881af39503f"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -5269,6 +5273,12 @@ react-error-overlay@^2.0.2:
     react-dom "^15 || ^16"
     settle-promise "1.0.0"
     source-map "0.5.6"
+
+react-google-maps-loader@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-google-maps-loader/-/react-google-maps-loader-3.0.1.tgz#2bbf58c9578d3fefb3b118d25ce0631bab9715d2"
+  dependencies:
+    little-loader "~0.1.0"
 
 react-google-maps@^9.0.1:
   version "9.0.1"

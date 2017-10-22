@@ -42,7 +42,7 @@ export default class NavBar extends Component {
         className="main-nav dark stick-fixed"
         style={{
           backgroundColor: this.state.backgroundColor,
-          transition: "ease .5s"
+          transition: "ease .2s"
         }}
       >
         <div className="full-wrapper relative clearfix">

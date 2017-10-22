@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import headerImg from "../img/home-header.jpg";
 import { NavLink } from "react-router-dom";
-import reactScroll from "react-scroll";
 
-var Link = reactScroll.Link;
 export default class Header extends Component {
   render() {
     return (
@@ -42,10 +40,8 @@ export default class Header extends Component {
                 </NavLink>
               </div>
             </div>
-            {/* <!-- End Hero Content --> */}
           </div>
         </section>
-        {/* <!-- End Home Section --> */}
       </header>
     );
   }

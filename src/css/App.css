@@ -939,7 +939,7 @@ a.btn-mod:focus {
 }
 
 .scroll-down-icon {
-    padding: 1em;
+  padding: 1em;
   display: inline-block;
   position: relative;
   color: #fff;
@@ -2627,13 +2627,14 @@ a.logo:hover {
    ============================== */
 
 .google-map {
-  position: relative;
+  flex: 1;
+  /* position: relative; */
   background: #111;
 }
 #map-canvas {
   /* display: flex;
     justify-content: center; */
-  height: 80.1vh;
+  /* height: 80.1vh; */
   background-color: #111 !important;
   margin: 0 auto;
 }
@@ -2644,9 +2645,9 @@ a.logo:hover {
   color: #777;
 }
 .map-section {
-  width: 51%;
+  /* width: 51%; */
   height: 100%;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   right: 0;
   padding: 0 !important;
@@ -2666,51 +2667,8 @@ a.logo:hover {
 }
 .map-toggle {
   width: 100%;
-  height: 100px;
-  position: absolute;
-  top: 50%;
-  /* left: 50%; */
-  /* margin: -50px 0 0 -100px; */
   color: #fff;
   text-align: center;
-}
-.mt-icon {
-  width: 27px;
-  height: 27px;
-  line-height: 27px;
-  margin: 6px auto 25px;
-  position: relative;
-  color: #111;
-
-  -webkit-transition: all 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
-  -moz-transition: all 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
-  -o-transition: all 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
-  -ms-transition: all 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
-  transition: all 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
-}
-.mt-icon:before {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #fff;
-
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.mt-icon i,
-.mt-icon span {
-  position: relative;
 }
 .mt-text {
   margin-left: 12px;
@@ -2718,26 +2676,10 @@ a.logo:hover {
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: rgba(255, 255, 255, 0.75);
-}
-.mt-close {
-  display: none;
-}
-
-/* Map opened */
-
-.map-section.js-active {
-  height: 50px;
-  background: rgba(17, 17, 17, 0.75);
-}
-.map-section.js-active:hover {
-  background: rgba(17, 17, 17, 0.85);
-}
-.map-section.js-active .mt-icon {
-  opacity: 0;
-}
-.map-section.js-active .mt-text {
-  position: relative;
-  top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 /* ==============================
@@ -2972,9 +2914,9 @@ a {
 }
 
 .headroom-wrapper {
-    height: 0px !important;
-  }
+  height: 0px !important;
+}
 
 .headroom {
-    z-index: 15 !important;
+  z-index: 15 !important;
 }
