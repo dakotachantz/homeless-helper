@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import logo from "../img/logo-black.png";
+import reactScroll from "react-scroll";
+
+var Link = reactScroll.Link;
 export default class Footer extends Component {
   render() {
     return (
@@ -19,9 +21,17 @@ export default class Footer extends Component {
           </div>
         </div>
         <div>
-          <a href="#top" className="link-to-top">
+          <Link
+            to="top"
+            activeClass="activeScroll"
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={700}
+            className="link-to-top"
+          >
             <i className="fa fa-caret-up" />
-          </a>
+          </Link>
         </div>
       </footer>
     );

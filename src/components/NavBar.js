@@ -1,34 +1,74 @@
 import React, { Component } from "react";
-import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
 import logo from "../img/logo-white.png";
+import reactScroll from "react-scroll";
+
+var Link = reactScroll.Link;
 export default class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      backgroundColor: "transparent"
+    };
+  }
+
+  componentWillMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = e => {
+    // let mobileNav = document.querySelector(".sidenav");
+    // if (mobileNav.style.display !== "none") {
+    //   mobileNav.style.display = "none";
+    // }
+    const scrollTop =
+      window.pageYOffset !== undefined
+        ? window.pageYOffset
+        : (document.documentElement ||
+            document.body.parentNode ||
+            document.body
+          ).scrollTop;
+    if (scrollTop < 20) {
+      this.setState({
+        backgroundColor: "transparent"
+      });
+    } else {
+      this.setState({ backgroundColor: "rgba(27, 27, 27, .7)" });
+    }
+  };
   render() {
     return (
-      <nav className="main-nav dark transparent stick-fixed">
+      <nav
+        className="main-nav dark stick-fixed"
+        style={{
+          backgroundColor: this.state.backgroundColor,
+          transition: "ease .5s"
+        }}
+      >
         <div className="full-wrapper relative clearfix">
           <div className="nav-logo-wrap local-scroll">
-            <NavLink to="#top" className="logo">
+            <Link
+              to="top"
+              activeClass="activeScroll"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={700}
+              className="logo-item"
+            >
               <img src={logo} alt="" width="50" />
-            </NavLink>
+            </Link>
           </div>
 
           <div className="mobile-nav">
             <i className="fa fa-bars" />
           </div>
 
-          {/* <!-- Main Menu --> */}
           <div className="inner-nav desktop-nav">
             <ul className="clearlist">
-              {/* <!-- Item With Sub --> */}
               <li>
                 <NavLink to="/" className="mn-has-sub active">
                   Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/#mission" className="mn-has-sub active">
-                  Our Mission
                 </NavLink>
               </li>
               <li>
@@ -36,10 +76,13 @@ export default class NavBar extends Component {
                   Find Resources
                 </NavLink>
               </li>
-              {/* <!-- End Languages --> */}
+              <li>
+                <NavLink to="/ourmission" className="mn-has-sub active">
+                  Our Mission
+                </NavLink>
+              </li>
             </ul>
           </div>
-          {/* <!-- End Main Menu --> */}
         </div>
       </nav>
     );

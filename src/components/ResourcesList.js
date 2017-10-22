@@ -33,7 +33,7 @@ export default class ResourcesList extends Component {
           className="page-section"
           id="services"
           style={{
-            padding: "60px 0",
+            padding: "100px 0",
             background: "#fff"
           }}
         >
@@ -71,7 +71,7 @@ export default class ResourcesList extends Component {
               <li>
                 <a href="#service-development">
                   <div className="alt-tabs-icon">
-                    <span className="ionicons ion-home" />
+                    <span className="ionicons ion-ios-home" />
                   </div>
                   Shelter
                 </a>

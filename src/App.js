@@ -4,16 +4,18 @@ import { BaseLayout } from "./components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomeView from "./containers/HomeView";
 import ResourcesView from "./containers/ResourcesView";
+import MissionView from "./containers/MissionView";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App page" id="top">
         <BrowserRouter>
           <BaseLayout>
             <Switch>
               <Route exact path="/" component={HomeView} />
               <Route path="/findresources" component={ResourcesView} />
+              <Route path="/ourmission" component={MissionView} />
             </Switch>
           </BaseLayout>
         </BrowserRouter>
