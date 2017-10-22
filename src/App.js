@@ -3,27 +3,7 @@ import "./css/App.css";
 import { BaseLayout } from "./components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { HomeView, MissionView, ResourcesView } from "./containers";
-import axios from "axios";
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
-
-  componentWillMount = () => {
-    axios
-      .get("https://data.nashville.gov/resource/8zc7-2afq.json")
-      .then(response => {
-        console.log(response.data);
-        let data = response.data;
-        console.log("this.state ", this.state);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
   render() {
     return (
       <div className="App page" id="top">

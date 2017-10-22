@@ -1,233 +1,29 @@
 import React, { Component } from "react";
+import mapStyles from "../mapStyles";
 const google = window.google;
-var map, infoWindow;
+let map;
 export default class Map extends Component {
   initMap = () => {
-    let home = { lat: 36.174, lng: -86.767 };
+    let TIY = { lat: 36.152669, lng: -86.776104 };
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 36.174, lng: -86.767 },
       zoom: 12,
-      styles: [
-        {
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#ebe3cd"
-            }
-          ]
-        },
-        {
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#523735"
-            }
-          ]
-        },
-        {
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#f5f1e6"
-            }
-          ]
-        },
-        {
-          featureType: "administrative",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#c9b2a6"
-            }
-          ]
-        },
-        {
-          featureType: "administrative.land_parcel",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#dcd2be"
-            }
-          ]
-        },
-        {
-          featureType: "administrative.land_parcel",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#ae9e90"
-            }
-          ]
-        },
-        {
-          featureType: "landscape.natural",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#dfd2ae"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#dfd2ae"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#93817c"
-            }
-          ]
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#a5b076"
-            }
-          ]
-        },
-        {
-          featureType: "poi.park",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#447530"
-            }
-          ]
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#f5f1e6"
-            }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#fdfcf8"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#f8c967"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#e9bc62"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway.controlled_access",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#e98d58"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway.controlled_access",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#db8555"
-            }
-          ]
-        },
-        {
-          featureType: "road.local",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#806b63"
-            }
-          ]
-        },
-        {
-          featureType: "transit.line",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#dfd2ae"
-            }
-          ]
-        },
-        {
-          featureType: "transit.line",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#8f7d77"
-            }
-          ]
-        },
-        {
-          featureType: "transit.line",
-          elementType: "labels.text.stroke",
-          stylers: [
-            {
-              color: "#ebe3cd"
-            }
-          ]
-        },
-        {
-          featureType: "transit.station",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#dfd2ae"
-            }
-          ]
-        },
-        {
-          featureType: "water",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#b9d3c2"
-            }
-          ]
-        },
-        {
-          featureType: "water",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#92998d"
-            }
-          ]
-        }
-      ]
+      styles: mapStyles
     });
-    infoWindow = new google.maps.InfoWindow();
-    var marker = new google.maps.Marker({
-      position: home,
-      map: map
+    let infoWindow = new google.maps.InfoWindow();
+    let marker = new google.maps.Marker({
+      position: TIY,
+      map: map,
+      Title: "The Iron Yard"
     });
+    marker.addListener("click", function() {
+      infoWindow.open(map, marker);
+    });
+    infoWindow.setPosition(TIY);
+    infoWindow.setContent("The Iron Yard Nashville A place for learning");
+    // infoWindow.open(map);
+    map.setCenter(TIY);
+    map.setZoom(18);
     // Try HTML5 geolocation.
     //   if (navigator.geolocation) {
     //     navigator.geolocation.getCurrentPosition(
@@ -267,9 +63,11 @@ export default class Map extends Component {
     this.initMap();
   };
 
-  componentWillUnmount() {}
-  map = "";
+  componentWillUnmount() {
+    map = "";
+  }
+
   render() {
-    return <div>{map}</div>;
+    return <div>{map === undefined ? map : ""}</div>;
   }
 }

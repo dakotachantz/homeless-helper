@@ -6,25 +6,26 @@ import resourceHeaderImg from "../img/resource-header.jpg";
 import reactScroll from "react-scroll";
 // const google = window.google;
 let Link = reactScroll.Link;
-let resources;
 export default class ResourcesList extends Component {
-  //   componentWillMount() {
-  //     axios
-  //       .get("https://data.nashville.gov/resource/8zc7-2afq.json")
-  //       .then(function(response) {
-  //         console.log(response.data);
-  //         resources = response.data.map((resource, index) => {
-  //           return (
-  //             <div key={index}>
-  //               {resource.contact} {resource.contact_type}
-  //             </div>
-  //           );
-  //         });
-  //       })
-  //       .catch(function(error) {
-  //         console.log(error);
-  //       });
-  //   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: ""
+    };
+  }
+
+  componentWillMount = () => {
+    axios
+      .get("https://data.nashville.gov/resource/8zc7-2afq.json")
+      .then(response => {
+        console.log(response.data);
+        this.setState({ data: response.data });
+        console.log("this.state ", this.state);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -155,14 +156,23 @@ export default class ResourcesList extends Component {
               background: "#fff",
               color: "black",
               flex: 1,
-              border: "1px solid lightgray"
+              border: "1px solid lightgray",
+              overflow: "auto",
+              height: "80.1vh"
             }}
           >
-            Display list of resources below. Display list of resources below.
-            Display list of resources below. Display list of resources below.
-            Display list of resources below. Display list of resources below.
-            Display list of resources below. Display list of resources below.
-            {resources}
+            {this.state.data !== ""
+              ? this.state.data.map((item, index) => {
+                  return (
+                    <div className="card" key={index}>
+                      <span>{item.contact}</span>
+                      <span className="text-muted">
+                        Category: {item.contact_type}
+                      </span>
+                    </div>
+                  );
+                })
+              : "Loading..."}
           </span>
           <div className="google-map">
             <div id="map-canvas" />
@@ -181,7 +191,7 @@ export default class ResourcesList extends Component {
               </div>
             </div>
           </div>
-          <Map />
+          {<Map data={this.state.data} />}
         </section>
       </div>
     );
