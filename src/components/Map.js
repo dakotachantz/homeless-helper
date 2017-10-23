@@ -49,7 +49,7 @@ export default class Map extends Component {
       zoom: 12,
       styles: mapStyles
     });
-    nextProps.data.forEach(dataPoint => {
+    nextProps.filtered.forEach(dataPoint => {
       let marker = new google.maps.Marker({
         position: {
           lat: dataPoint.location_1.coordinates[1],

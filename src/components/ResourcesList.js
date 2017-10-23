@@ -8,7 +8,8 @@ export default class ResourcesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: ""
+      data: "",
+      filtered: ""
     };
   }
 
@@ -27,7 +28,7 @@ export default class ResourcesList extends Component {
             item.location_1 !== undefined &&
             contactTypes.indexOf(item.contact_type) > -1
         );
-        this.setState({ data: filteredItems });
+        this.setState({ data: filteredItems, filtered: filteredItems });
       })
       .catch(function(error) {
         console.log(error);
@@ -35,16 +36,22 @@ export default class ResourcesList extends Component {
   };
 
   getResources = resourceType => {
-    console.log("resourceType: ", resourceType);
-    this.setState({ data: "" });
-    if (resourceType === "Food Assistance") {
-      let filtered = this.state.data.filter(
-        item => item.contact_type === "Food Assistance"
-      );
-      console.log("filtered: ", filtered);
-      this.setState({ data: filtered }, () => {
-        console.log("this.state filter stuff: ", this.state);
-      });
+    let contactTypes = [
+      "Food Assistance",
+      "Clothing",
+      "Transportation",
+      "Housing"
+    ];
+    contactTypes.forEach(contactType => {
+      if (resourceType === contactType) {
+        let filtered = this.state.data.filter(
+          item => item.contact_type === resourceType
+        );
+        this.setState({ filtered });
+      }
+    });
+    if (resourceType === "All") {
+      this.setState({ filtered: this.state.data });
     }
   };
 
@@ -90,7 +97,7 @@ export default class ResourcesList extends Component {
               <li>
                 <Link
                   onClick={() => {
-                    this.getResources("");
+                    this.getResources("All");
                   }}
                   to="resources"
                   spy={true}
@@ -189,8 +196,8 @@ export default class ResourcesList extends Component {
               height: "80.1vh"
             }}
           >
-            {this.state.data !== "" ? (
-              this.state.data.map((item, index) => {
+            {this.state.filtered !== "" ? (
+              this.state.filtered.map((item, index) => {
                 return (
                   <div className="card" id={index} key={index}>
                     <span>{item.contact}</span>
@@ -205,7 +212,7 @@ export default class ResourcesList extends Component {
             )}
           </span>
           <div className="google-map">
-            <Map data={this.state.data} />
+            <Map data={this.state.data} filtered={this.state.filtered} />
             <div className="detail">
               This is detail for the item you clicked on
             </div>
