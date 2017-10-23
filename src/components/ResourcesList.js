@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Map from "./Map";
-import testData from "../data";
 import resourceHeaderImg from "../img/resource-header.jpg";
 import reactScroll from "react-scroll";
-// const google = window.google;
 let Link = reactScroll.Link;
 export default class ResourcesList extends Component {
   constructor(props) {
@@ -17,6 +15,19 @@ export default class ResourcesList extends Component {
   componentWillMount = () => {
     axios
       .get("https://data.nashville.gov/resource/8zc7-2afq.json")
+      .then(response => {
+        console.log(response.data);
+        this.setState({ data: response.data });
+        console.log("this.state ", this.state);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+
+  getResources = resourceType => {
+    axios
+      .get("https://data.nashville.gov/resource/8zc7-2afq.json" + resourceType)
       .then(response => {
         console.log(response.data);
         this.setState({ data: response.data });
@@ -68,12 +79,14 @@ export default class ResourcesList extends Component {
             <ul className="nav nav-tabs tpl-alt-tabs font-alt pt-30 pt-sm-0 pb-30 pb-sm-0">
               <li>
                 <Link
+                  onClick={() => {
+                    this.getResources("");
+                  }}
                   to="resources"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={700}
-                  href=""
                 >
                   <div className="alt-tabs-icon">
                     <span className="ionicons ion-android-globe" />
@@ -83,12 +96,14 @@ export default class ResourcesList extends Component {
               </li>
               <li>
                 <Link
+                  onClick={() => {
+                    this.getResources("?contact_type=Food Assistance");
+                  }}
                   to="resources"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={700}
-                  href=""
                 >
                   <div className="alt-tabs-icon">
                     <span className="fa fa-cutlery" />
@@ -98,12 +113,14 @@ export default class ResourcesList extends Component {
               </li>
               <li>
                 <Link
+                  onClick={() => {
+                    this.getResources("?contact_type=Clothing");
+                  }}
                   to="resources"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={700}
-                  href=""
                 >
                   <div className="alt-tabs-icon">
                     <span className="ionicons ion-tshirt" />
@@ -113,12 +130,14 @@ export default class ResourcesList extends Component {
               </li>
               <li>
                 <Link
+                  onClick={() => {
+                    this.getResources("?contact_type=Housing");
+                  }}
                   to="resources"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={700}
-                  href=""
                 >
                   <div className="alt-tabs-icon">
                     <span className="ionicons ion-ios-home" />
@@ -128,12 +147,14 @@ export default class ResourcesList extends Component {
               </li>
               <li>
                 <Link
+                  onClick={() => {
+                    this.getResources("?contact_type=Transportation");
+                  }}
                   to="resources"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={700}
-                  href=""
                 >
                   <div className="alt-tabs-icon">
                     <span className="fa fa-car" />
@@ -158,8 +179,8 @@ export default class ResourcesList extends Component {
               height: "80.1vh"
             }}
           >
-            {testData !== ""
-              ? testData.map((item, index) => {
+            {this.state.data !== ""
+              ? this.state.data.map((item, index) => {
                   return (
                     <div className="card" id={index} key={index}>
                       <span>{item.contact}</span>

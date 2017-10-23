@@ -867,7 +867,7 @@ footer.page-section.bg-gray-lighter.footer {
 }
 .tpl-alt-tabs > li > a {
   text-decoration: none;
-  color: #a3a3a3;
+  color: #a3a3a3 !important;
   background: none !important;
   border: none !important;
 
@@ -878,13 +878,13 @@ footer.page-section.bg-gray-lighter.footer {
 }
 .tpl-alt-tabs > li > a:hover {
   background: none;
-  color: #111;
+  color: #111 !important;
 }
 .tpl-alt-tabs li.active a,
 .tpl-alt-tabs li.active a:hover,
 .tpl-alt-tabs li.active a:focus {
   cursor: default;
-  color: #111;
+  color: #111 !important;
 }
 .alt-tabs-icon {
   display: block;
