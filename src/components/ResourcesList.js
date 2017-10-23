@@ -16,24 +16,18 @@ export default class ResourcesList extends Component {
     axios
       .get("https://data.nashville.gov/resource/8zc7-2afq.json")
       .then(response => {
-        console.log(response.data);
         let contactTypes = [
           "Food Assistance",
           "Clothing",
           "Transportation",
           "Housing"
         ];
-        // console.log("nextProps ", nextProps);
-        // if(typeFilter) getFilteredStuff
-        // get all types
         let filteredItems = response.data.filter(
           item =>
             item.location_1 !== undefined &&
             contactTypes.indexOf(item.contact_type) > -1
         );
-        console.log("filteredItems: ", filteredItems);
         this.setState({ data: filteredItems });
-        console.log("this.state ", this.state);
       })
       .catch(function(error) {
         console.log(error);
@@ -41,16 +35,17 @@ export default class ResourcesList extends Component {
   };
 
   getResources = resourceType => {
-    axios
-      .get("https://data.nashville.gov/resource/8zc7-2afq.json" + resourceType)
-      .then(response => {
-        console.log(response.data);
-        this.setState({ data: response.data });
-        console.log("this.state ", this.state);
-      })
-      .catch(function(error) {
-        console.log(error);
+    console.log("resourceType: ", resourceType);
+    this.setState({ data: "" });
+    if (resourceType === "Food Assistance") {
+      let filtered = this.state.data.filter(
+        item => item.contact_type === "Food Assistance"
+      );
+      console.log("filtered: ", filtered);
+      this.setState({ data: filtered }, () => {
+        console.log("this.state filter stuff: ", this.state);
       });
+    }
   };
 
   render() {
@@ -112,7 +107,7 @@ export default class ResourcesList extends Component {
               <li>
                 <Link
                   onClick={() => {
-                    this.getResources("?contact_type=Food Assistance");
+                    this.getResources("Food Assistance");
                   }}
                   to="resources"
                   spy={true}
@@ -129,7 +124,7 @@ export default class ResourcesList extends Component {
               <li>
                 <Link
                   onClick={() => {
-                    this.getResources("?contact_type=Clothing");
+                    this.getResources("Clothing");
                   }}
                   to="resources"
                   spy={true}
@@ -146,7 +141,7 @@ export default class ResourcesList extends Component {
               <li>
                 <Link
                   onClick={() => {
-                    this.getResources("?contact_type=Housing");
+                    this.getResources("Housing");
                   }}
                   to="resources"
                   spy={true}
@@ -163,7 +158,7 @@ export default class ResourcesList extends Component {
               <li>
                 <Link
                   onClick={() => {
-                    this.getResources("?contact_type=Transportation");
+                    this.getResources("Transportation");
                   }}
                   to="resources"
                   spy={true}
@@ -210,7 +205,7 @@ export default class ResourcesList extends Component {
             )}
           </span>
           <div className="google-map">
-            {<Map data={this.state.data} />}
+            <Map data={this.state.data} />
             <div className="detail">
               This is detail for the item you clicked on
             </div>

@@ -22,14 +22,8 @@ export default class Map extends Component {
     infoWindow.open(map);
   };
 
-  componentDidMount = () => {
-    this.initMap();
-  };
-
   determineMarker = dataPoint => {
     let label = {};
-
-    // console.log(dataPoint);
     if (dataPoint.contact_type === "Food Assistance") {
       label.fontFamily = "Fontawesome";
       label.text = "\uf0f5";
@@ -49,25 +43,12 @@ export default class Map extends Component {
     return label;
   };
 
-  componentWillReceiveProps(nextProps) {
-    // let contactTypes = [
-    //   "Food Assistance",
-    //   "Clothing",
-    //   "Transportation",
-    //   "Housing"
-    // ];
-
-    // // console.log("nextProps ", nextProps);
-    // // if(typeFilter) getFilteredStuff
-    // // get all types
-    // let filteredItems = nextProps.data.filter(
-    //   item =>
-    //     item.location_1 !== undefined &&
-    //     contactTypes.indexOf(item.contact_type) > -1
-    // );
-
-    // console.log("filteredItems: ", filteredItems);
-
+  updateMapView = nextProps => {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 36.174, lng: -86.767 },
+      zoom: 12,
+      styles: mapStyles
+    });
     nextProps.data.forEach(dataPoint => {
       let marker = new google.maps.Marker({
         position: {
@@ -77,25 +58,20 @@ export default class Map extends Component {
         type: dataPoint.location_1.type,
         map: map,
         label: this.determineMarker(dataPoint)
-        // label: {
-        //   fontFamily: "Ionicons", // "Fontawesome" || "Ionicons"
-        //   text: String.fromCharCode("0xf448") //FONTAWESOME "\uf1b9" = car | "\uf0f5" = cutlery || IONIC "\f448" = house | "\f4f7" = shirt
-        // }
       });
-      // marker.label = this.determineMarker(dataPoint);
       let infoWindow = new google.maps.InfoWindow();
       marker.addListener("click", function() {
         infoWindow.open(map, marker);
       });
       let contentString = `
-        <div id="content">
-        <h2 class="mapItemHeading">${dataPoint.contact}</h2>
-        <div id="bodyContent">
-        <p>Category: ${dataPoint.contact_type}</p
-        <p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
-        rel="noopener noreferrer">${dataPoint.location_1_address === undefined
-          ? ""
-          : dataPoint.location_1_address} ${dataPoint.location_1_city}, ${dataPoint.location_1_state}</a></p>
+      <div id="content">
+      <h2 class="mapItemHeading">${dataPoint.contact}</h2>
+      <div id="bodyContent">
+      <p>Category: ${dataPoint.contact_type}</p
+      <p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
+      rel="noopener noreferrer">${dataPoint.location_1_address === undefined
+        ? ""
+        : dataPoint.location_1_address} ${dataPoint.location_1_city}, ${dataPoint.location_1_state}</a></p>
         <p>Phone Number: <a href="tel:${dataPoint.phone_number}">${dataPoint.phone_number}</a></p>
         </div>
         </div>`;
@@ -126,10 +102,14 @@ export default class Map extends Component {
       // Browser doesn't support Geolocation
       this.handleLocationError(false, infoWindow, map.getCenter());
     }
-  }
+  };
 
-  componentWillUnmount() {
-    map = "";
+  componentDidMount = () => {
+    this.initMap();
+  };
+
+  componentWillReceiveProps(nextProps) {
+    this.updateMapView(nextProps);
   }
 
   render() {
