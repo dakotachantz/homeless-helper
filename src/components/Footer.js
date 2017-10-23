@@ -18,7 +18,7 @@ export default class Footer extends Component {
                 &nbsp;Dakota Nichols
               </a>
               &nbsp;&
-              <a href="" target="_blank" rel="noopener noreferrer">
+              <a target="_blank" rel="noopener noreferrer">
                 &nbsp;Hamilton Moore
               </a>
             </div>

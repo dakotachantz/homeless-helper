@@ -65,7 +65,7 @@ export default class ResourcesList extends Component {
               Filter By Resource
             </h2>
             <ul className="nav nav-tabs tpl-alt-tabs font-alt pt-30 pt-sm-0 pb-30 pb-sm-0">
-              <li className="active">
+              <li>
                 <Link
                   to="resources"
                   spy={true}
@@ -175,7 +175,6 @@ export default class ResourcesList extends Component {
               : "Loading..."}
           </span>
           <div className="google-map">
-            <div id="map-canvas" />
             <div className="map-section" id="map">
               <div className="map-toggle">
                 <div className="mt-text font-alt">

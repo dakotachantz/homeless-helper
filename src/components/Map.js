@@ -1,29 +1,91 @@
 import React, { Component } from "react";
 import mapStyles from "../mapStyles";
+import testData from "../data";
 const google = window.google;
 let map;
+console.log("test data, ", testData);
 export default class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      mapData: ""
+    };
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("next props ", nextProps);
+  //   let mapStuff =
+  //     nextProps === undefined
+  //       ? this.props.map((item, index) => {
+  //           return <div key={index} />;
+  //         })
+  //       : "props not loaded yet";
+  //   console.log(mapStuff);
+  //   console.log(this.props);
+  //   this.forceUpdate();
+  // }
+
   initMap = () => {
-    let TIY = { lat: 36.152669, lng: -86.776104 };
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 36.174, lng: -86.767 },
       zoom: 12,
       styles: mapStyles
     });
-    let infoWindow = new google.maps.InfoWindow();
-    let marker = new google.maps.Marker({
-      position: TIY,
-      map: map,
-      Title: "The Iron Yard"
+
+    testData.forEach(dataPoint => {
+      let marker = new google.maps.Marker({
+        position: {
+          lat: dataPoint.location_1.coordinates[1],
+          lng: dataPoint.location_1.coordinates[0]
+        },
+        type: dataPoint.location_1.type,
+        map: map
+      });
+      let infoWindow = new google.maps.InfoWindow();
+      marker.addListener("click", function() {
+        infoWindow.open(map, marker);
+      });
+      let contentString = `
+        <div id="content">
+        <h2 class="mapItemHeading">${dataPoint.contact}</h2>
+        <div id="bodyContent">
+        <p>Category: ${dataPoint.contact_type}</p
+        <p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
+        rel="noopener noreferrer">${dataPoint.location_1_address === undefined
+          ? ""
+          : dataPoint.location_1_address} ${dataPoint.location_1_city} ${dataPoint.location_1_state}</a></p>
+        <p>Phone Number: <a href="tel:${dataPoint.phone_number}">${dataPoint.phone_number}</a></p>
+        </div>
+        </div>`;
+      infoWindow.setPosition(marker.position);
+      infoWindow.setContent(contentString);
+      // map.setCenter(marker.position);
+      map.setZoom(13);
     });
-    marker.addListener("click", function() {
-      infoWindow.open(map, marker);
-    });
-    infoWindow.setPosition(TIY);
-    infoWindow.setContent("The Iron Yard Nashville A place for learning");
-    // infoWindow.open(map);
-    map.setCenter(TIY);
-    map.setZoom(18);
+    // let marker = new google.maps.Marker({
+    //   position: test,
+    //   map: map,
+    //   title: "The Iron Yard"
+    // });
+    // let taddress = {
+    //   location_1_address: "705 Drexel St.",
+    //   location_1_city: "Nashville",
+    //   location_1_state: "TN"
+    // };
+    // let contentString = `
+    //   <div id="content">
+    //   <h2 class="mapItemHeading">Room in the Inn</h2>
+    //   <div id="bodyContent">
+    //   <p>Category: Housing</p
+    //   <p>Address: <a href="http://maps.google.com/?q=${taddress.location_1_address}${taddress.location_1_city}${taddress.location_1_state}" target="_blank"
+    //   rel="noopener noreferrer">705 Drexel St. Nashville, TN</a></p>
+    //   <p>Phone Number: <a href="tel:615-251-7019">615-251-7019</a></p>
+    //   </div>
+    //   </div>`;
+    // infoWindow.setPosition(test);
+    // infoWindow.setContent(contentString);
+    // map.setCenter(test);
+    // map.setZoom(18);
     // Try HTML5 geolocation.
     //   if (navigator.geolocation) {
     //     navigator.geolocation.getCurrentPosition(
@@ -68,6 +130,6 @@ export default class Map extends Component {
   }
 
   render() {
-    return <div>{map === undefined ? map : ""}</div>;
+    return <div>{map !== undefined ? "" : map}</div>;
   }
 }

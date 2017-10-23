@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../img/logo-white.png";
-import reactScroll from "react-scroll";
 
-var Link = reactScroll.Link;
 export default class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -47,17 +45,9 @@ export default class NavBar extends Component {
       >
         <div className="full-wrapper relative clearfix">
           <div className="nav-logo-wrap local-scroll">
-            <Link
-              to="top"
-              activeClass="activeScroll"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={700}
-              className="logo-item"
-            >
+            <NavLink to="/" className="logo-item">
               <img src={logo} alt="" width="50" />
-            </Link>
+            </NavLink>
           </div>
 
           <div className="mobile-nav">
