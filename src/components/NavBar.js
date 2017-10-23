@@ -51,7 +51,10 @@ export default class NavBar extends Component {
           </div>
 
           <div className="mobile-nav">
-            <i className="fa fa-bars" />
+            <i
+              className="fa fa-bars"
+              style={{ fontSize: "2rem", color: "rgba(255, 255, 255, .7)" }}
+            />
           </div>
 
           <div className="inner-nav desktop-nav">

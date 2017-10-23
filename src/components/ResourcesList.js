@@ -17,7 +17,22 @@ export default class ResourcesList extends Component {
       .get("https://data.nashville.gov/resource/8zc7-2afq.json")
       .then(response => {
         console.log(response.data);
-        this.setState({ data: response.data });
+        let contactTypes = [
+          "Food Assistance",
+          "Clothing",
+          "Transportation",
+          "Housing"
+        ];
+        // console.log("nextProps ", nextProps);
+        // if(typeFilter) getFilteredStuff
+        // get all types
+        let filteredItems = response.data.filter(
+          item =>
+            item.location_1 !== undefined &&
+            contactTypes.indexOf(item.contact_type) > -1
+        );
+        console.log("filteredItems: ", filteredItems);
+        this.setState({ data: filteredItems });
         console.log("this.state ", this.state);
       })
       .catch(function(error) {
@@ -179,39 +194,27 @@ export default class ResourcesList extends Component {
               height: "80.1vh"
             }}
           >
-            {this.state.data !== ""
-              ? this.state.data.map((item, index) => {
-                  return (
-                    <div className="card" id={index} key={index}>
-                      <span>{item.contact}</span>
-                      <span className="text-muted">
-                        Category: {item.contact_type}
-                      </span>
-                    </div>
-                  );
-                })
-              : "Loading..."}
+            {this.state.data !== "" ? (
+              this.state.data.map((item, index) => {
+                return (
+                  <div className="card" id={index} key={index}>
+                    <span>{item.contact}</span>
+                    <span className="text-muted">
+                      Category: {item.contact_type}
+                    </span>
+                  </div>
+                );
+              })
+            ) : (
+              <div>Loading...</div>
+            )}
           </span>
           <div className="google-map">
-            <div className="map-section" id="map">
-              <div className="map-toggle">
-                <div className="mt-text font-alt">
-                  <div
-                    style={{
-                      margin: "0 auto",
-                      textAlign: "center"
-                    }}
-                  >
-                    No Map data to display
-                  </div>
-                </div>
-              </div>
-            </div>
+            {<Map data={this.state.data} />}
             <div className="detail">
               This is detail for the item you clicked on
             </div>
           </div>
-          {<Map data={this.state.data} />}
         </section>
       </div>
     );

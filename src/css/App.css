@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700);
 @import url(https://fonts.googleapis.com/css?family=Libre+Franklin);
+@import "./et-line.css";
 
 .align-center {
   text-align: center !important;
@@ -389,6 +390,7 @@ a.btn-mod:focus {
   width: 100%;
   align-self: center;
   justify-content: flex-end;
+  display: none;
 }
 .inner-nav ul {
   font-size: 11px;
@@ -425,14 +427,13 @@ a.btn-mod:focus {
 }
 
 .mobile-nav {
-  display: none;
-  float: right;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
   vertical-align: middle;
   font-size: 11px;
   font-weight: 400;
   text-transform: uppercase;
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
 
   -webkit-user-select: none;
@@ -954,5 +955,11 @@ a {
 @media (min-width: 992px) {
   .nav-tabs {
     flex-direction: row;
+  }
+  .inner-nav {
+    display: flex;
+  }
+  .mobile-nav {
+    display: none;
   }
 }
