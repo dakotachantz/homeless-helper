@@ -3,11 +3,7 @@ import React, { Component } from "react";
 export default class Mission extends Component {
   render() {
     return (
-      <section
-        className="page-section"
-        id="mission"
-        style={{ padding: "190px 0" }}
-      >
+      <section className="page-section" id="mission">
         <div className="container relative">
           <h2 className="section-title font-alt align-center mb-70 mb-sm-40">
             Our Mission

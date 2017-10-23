@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Map from "./Map";
-
+import testData from "../data";
 import resourceHeaderImg from "../img/resource-header.jpg";
 import reactScroll from "react-scroll";
 // const google = window.google;
@@ -57,7 +57,8 @@ export default class ResourcesList extends Component {
           className="page-section"
           style={{
             padding: "100px 0",
-            background: "#fff"
+            background: "#fff",
+            minHeight: "50vh"
           }}
         >
           <div className="container relative">
@@ -145,11 +146,7 @@ export default class ResourcesList extends Component {
           </div>
         </section>
         {/* <!-- Resources */}
-        <section
-          className="resources"
-          id="resources"
-          style={{ display: "flex", flexDirection: "row", minHeight: "80.1vh" }}
-        >
+        <section className="resources" id="resources">
           <span
             className="resourcesList"
             style={{
@@ -161,10 +158,10 @@ export default class ResourcesList extends Component {
               height: "80.1vh"
             }}
           >
-            {this.state.data !== ""
-              ? this.state.data.map((item, index) => {
+            {testData !== ""
+              ? testData.map((item, index) => {
                   return (
-                    <div className="card" key={index}>
+                    <div className="card" id={index} key={index}>
                       <span>{item.contact}</span>
                       <span className="text-muted">
                         Category: {item.contact_type}
@@ -188,6 +185,9 @@ export default class ResourcesList extends Component {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="detail">
+              This is detail for the item you clicked on
             </div>
           </div>
           {<Map data={this.state.data} />}
