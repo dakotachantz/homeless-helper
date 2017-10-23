@@ -44,7 +44,7 @@ export default class NavBar extends Component {
         }}
       >
         <div className="full-wrapper relative clearfix">
-          <div className="nav-logo-wrap local-scroll">
+          <div className="nav-logo">
             <NavLink to="/" className="logo-item">
               <img src={logo} alt="" width="50" />
             </NavLink>
