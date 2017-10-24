@@ -6,7 +6,7 @@ import { HomeView, MissionView, ResourcesView } from "./containers";
 class App extends Component {
   render() {
     return (
-      <div className="App page" id="top">
+      <div className="App page" id="top" style={{ height: "100%" }}>
         <BrowserRouter>
           <BaseLayout>
             <Switch>

@@ -86,6 +86,8 @@ html {
 html,
 body {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   -webkit-font-smoothing: antialiased;
 }
 .page {
@@ -505,6 +507,7 @@ a.btn-mod:focus {
   margin-bottom: 7px;
   text-align: center;
   font-size: 32px;
+  display: none;
 }
 .bg-gray {
   background-color: #f4f4f4;
@@ -726,6 +729,7 @@ a.btn-mod:focus {
 }
 .testimonial p {
   font-size: 18px;
+  font-size: 14px;
 }
 
 /*
@@ -932,13 +936,36 @@ a {
 }
 
 #mission {
-  height: 85vh;
-  margin-top: 30px;
+  margin-top: auto;
+  flex: 1;
 }
 
-@media (min-width: 469px) {
-  #mission {
-    margin-top: 50px;
+#root {
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.icon-quote {
+  display: none;
+}
+
+@media (min-width: 469px) and (min-height: 469px) {
+  .testimonial p {
+    font-size: 18px;
+  }
+}
+
+@media (min-height: 415px) {
+  .section-icon {
+    display: block;
+  }
+  .icon-quote {
+    display: block;
   }
 }
 
@@ -1014,11 +1041,11 @@ a {
 }
 
 .mobile-ul a {
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-top: 1px solid rgb(39, 39, 39);
 }
 
 .mobile-ul a:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgb(39, 39, 39);
 }
 
 .mobile-ul a {

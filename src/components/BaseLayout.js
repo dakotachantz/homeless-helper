@@ -3,11 +3,11 @@ import { NavBar, Footer } from "../components";
 export default class BaseLayout extends Component {
   render() {
     return (
-      <div>
+      <main>
         <NavBar />
         {this.props.children}
         <Footer />
-      </div>
+      </main>
     );
   }
 }
