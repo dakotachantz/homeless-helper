@@ -1,16 +1,58 @@
 import React, { Component } from "react";
 import mapStyles from "../mapStyles";
 const google = window.google;
-let map;
-let infoWindow = new google.maps.InfoWindow();
+
 export default class Map extends Component {
-  initMap = () => {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 36.174, lng: -86.767 },
+  constructor() {
+    super(...arguments);
+    this.map = null;
+    this.mapEl = null;
+    this.userLocation = null;
+    this.center = { lat: 36.174, lng: -86.767 };
+  }
+
+  initMap() {
+    this.drawMap();
+    this.showUser();
+  }
+
+  showUser() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          let pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          this.center = pos;
+          this.userLocation = pos;
+
+          const userInfoWindow = new google.maps.InfoWindow();
+          userInfoWindow.setPosition(this.userLocation);
+          userInfoWindow.setContent("You are here");
+          userInfoWindow.open(this.map);
+
+          this.centerMap();
+          this.zoomMap();
+        },
+        () => {}
+      );
+    }
+  }
+
+  drawMap() {
+    this.map = new google.maps.Map(this.mapEl, {
+      center: this.center,
       zoom: 12,
       styles: mapStyles
     });
-  };
+  }
+  zoomMap() {
+    this.map.setZoom(16);
+  }
+  centerMap() {
+    this.map.setCenter(this.center);
+  }
 
   handleLocationError = (browserHasGeolocation, infoWindow, pos) => {
     infoWindow.setPosition(pos);
@@ -19,7 +61,7 @@ export default class Map extends Component {
         ? "Error: The Geolocation service failed."
         : "Error: Your browser doesn't support geolocation."
     );
-    infoWindow.open(map);
+    infoWindow.open(this.map);
   };
 
   determineMarker = dataPoint => {
@@ -43,12 +85,7 @@ export default class Map extends Component {
     return label;
   };
 
-  updateMapView = nextProps => {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 36.174, lng: -86.767 },
-      zoom: 12,
-      styles: mapStyles
-    });
+  updateMapView(nextProps) {
     nextProps.filtered.forEach(dataPoint => {
       let marker = new google.maps.Marker({
         position: {
@@ -56,12 +93,12 @@ export default class Map extends Component {
           lng: dataPoint.longitude
         },
         type: "Point",
-        map: map,
+        map: this.map,
         label: this.determineMarker(dataPoint)
       });
       let infoWindow = new google.maps.InfoWindow();
       marker.addListener("click", function() {
-        infoWindow.open(map, marker);
+        infoWindow.open(this.map, marker);
       });
       let contentString = `
       <div id="content">
@@ -77,32 +114,8 @@ export default class Map extends Component {
         </div>`;
       infoWindow.setPosition(marker.position);
       infoWindow.setContent(contentString);
-      map.setCenter(marker.position);
-      map.setZoom(13);
     });
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          let pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("You are here");
-          infoWindow.open(map);
-          map.setCenter(pos);
-          map.setZoom(15);
-        },
-        () => {
-          this.handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      this.handleLocationError(false, infoWindow, map.getCenter());
-    }
-  };
+  }
 
   componentDidMount = () => {
     this.initMap();
@@ -114,7 +127,7 @@ export default class Map extends Component {
 
   render() {
     return (
-      <div className="map-section" id="map">
+      <div className="map-section" ref={el => (this.mapEl = el)}>
         {}
       </div>
     );
