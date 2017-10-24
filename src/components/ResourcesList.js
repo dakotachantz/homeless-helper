@@ -82,7 +82,7 @@ export default class ResourcesList extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ width: "100%" }}>
         <header
           className="bg-dark-alfa-30"
           style={{

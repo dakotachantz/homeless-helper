@@ -940,18 +940,27 @@ a {
   flex: 1;
 }
 
-#root {
+/* #root {
   height: 100%;
-}
+}  */
 
-main {
+/* main {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
+} */
 
 .icon-quote {
   display: none;
+}
+
+.main-content {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 @media (min-width: 469px) and (min-height: 469px) {

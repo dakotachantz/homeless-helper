@@ -15,10 +15,6 @@ export default class NavBar extends Component {
   }
 
   handleScroll = e => {
-    // let mobileNav = document.querySelector(".sidenav");
-    // if (mobileNav.style.display !== "none") {
-    //   mobileNav.style.display = "none";
-    // }
     const scrollTop =
       window.pageYOffset !== undefined
         ? window.pageYOffset

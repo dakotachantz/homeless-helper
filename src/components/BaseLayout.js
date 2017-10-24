@@ -5,7 +5,7 @@ export default class BaseLayout extends Component {
     return (
       <main>
         <NavBar />
-        {this.props.children}
+        <div className="main-content">{this.props.children}</div>
         <Footer />
       </main>
     );

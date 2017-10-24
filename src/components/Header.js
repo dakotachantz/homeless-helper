@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default class Header extends Component {
   render() {
     return (
-      <header>
+      <header style={{ width: "100%" }}>
         <section
           className="home-section bg-dark-alfa-30 parallax-2"
           id="home"
