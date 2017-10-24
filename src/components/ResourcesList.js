@@ -4,13 +4,14 @@ import Map from "./Map";
 import resourceHeaderImg from "../img/resource-header.jpg";
 import reactScroll from "react-scroll";
 let Link = reactScroll.Link;
-let google = window.google;
+// let google = window.google;
 export default class ResourcesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: "",
-      filtered: ""
+      filtered: "",
+      selectedService: {}
     };
   }
 
@@ -35,26 +36,26 @@ export default class ResourcesList extends Component {
               contactTypes.indexOf(item.contact_type) > -1)
         );
         console.log("Filtered Items", filteredItems);
-        let origin = new google.maps.LatLng(36.174, -86.767);
-        let destinationA = new google.maps.LatLng(36.166687, -86.779932);
-        // let destinationB = new google.maps.LatLng(50.087692, 14.42115);
+        // let origin = new google.maps.LatLng(36.174, -86.767);
+        // let destinationA = new google.maps.LatLng(36.166687, -86.779932);
+        // // let destinationB = new google.maps.LatLng(50.087692, 14.42115);
 
-        let service = new google.maps.DistanceMatrixService();
-        service.getDistanceMatrix(
-          {
-            origins: [origin],
-            destinations: [destinationA],
-            travelMode: "WALKING",
-            unitSystem: google.maps.UnitSystem.IMPERIAL
-          },
-          callback
-        );
+        // let service = new google.maps.DistanceMatrixService();
+        // service.getDistanceMatrix(
+        //   {
+        //     origins: [origin],
+        //     destinations: [destinationA],
+        //     travelMode: "WALKING",
+        //     unitSystem: google.maps.UnitSystem.IMPERIAL
+        //   },
+        //   callback
+        // );
 
-        function callback(response, status) {
-          console.log("RESPONSE", response);
-          // See Parsing the Results for
-          // the basics of a callback function.
-        }
+        // function callback(response, status) {
+        //   console.log("RESPONSE", response);
+        //   // See Parsing the Results for
+        //   // the basics of a callback function.
+        // }
         filteredItems.sort((a, b) => a.contact.localeCompare(b.contact));
         this.setState({ data: filteredItems, filtered: filteredItems });
       });
@@ -72,6 +73,7 @@ export default class ResourcesList extends Component {
         let filtered = this.state.data.filter(
           item => item.contact_type === resourceType
         );
+        console.log("new filtered data= ", filtered);
         this.setState({ filtered });
       }
     });
@@ -79,6 +81,19 @@ export default class ResourcesList extends Component {
       this.setState({ filtered: this.state.data });
     }
   };
+
+  toggleItem(dataPoint) {
+    this.setState(oldState => {
+      return Object.assign({}, oldState, {
+        filtered: oldState.filtered.map(
+          item =>
+            item.id === dataPoint.id
+              ? Object.assign({}, dataPoint, { isOpen: !dataPoint.isOpen })
+              : item
+        )
+      });
+    });
+  }
 
   render() {
     return (
@@ -205,10 +220,8 @@ export default class ResourcesList extends Component {
                 </Link>
               </li>
             </ul>
-            {/* <!-- End Nav tabs --> */}
           </div>
         </section>
-        {/* <!-- Resources */}
         <section className="resources" id="resources">
           <span
             className="resourcesList"
@@ -224,7 +237,11 @@ export default class ResourcesList extends Component {
             {this.state.filtered !== "" ? (
               this.state.filtered.map((item, index) => {
                 return (
-                  <div className="card" id={index} key={index}>
+                  <div
+                    className="card"
+                    key={item.id}
+                    onClick={() => this.toggleItem(item)}
+                  >
                     <span>{item.contact}</span>
                     <span className="text-muted">
                       Category: {item.contact_type}
@@ -237,10 +254,16 @@ export default class ResourcesList extends Component {
             )}
           </span>
           <div className="google-map">
-            <Map filtered={this.state.filtered} />
-            <div className="detail">
-              This is detail for the item you clicked on
-            </div>
+            <Map
+              filtered={this.state.filtered}
+              onOpen={dataPoint => {
+                this.toggleItem(dataPoint);
+              }}
+              onClose={dataPoint => {
+                this.toggleItem(dataPoint);
+              }}
+              selectedService={this.state.selectedService}
+            />
           </div>
         </section>
       </div>

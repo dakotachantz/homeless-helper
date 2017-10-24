@@ -8,6 +8,7 @@ export default class Map extends Component {
     this.map = null;
     this.mapEl = null;
     this.userLocation = null;
+    this.mapPoints = [];
     this.center = { lat: 36.174, lng: -86.767 };
   }
 
@@ -41,6 +42,7 @@ export default class Map extends Component {
   }
 
   drawMap() {
+    // if(this.props.selectedService.location) this.center = selectedService.loc
     this.map = new google.maps.Map(this.mapEl, {
       center: this.center,
       zoom: 12,
@@ -85,8 +87,16 @@ export default class Map extends Component {
     return label;
   };
 
+  clearMap() {
+    this.mapPoints.forEach(({ marker, infoWindow }) => {
+      marker.setMap(null);
+      infoWindow.setMap(null);
+    });
+  }
+
   updateMapView(nextProps) {
-    nextProps.filtered.forEach(dataPoint => {
+    this.clearMap();
+    this.mapPoints = nextProps.filtered.map(dataPoint => {
       let marker = new google.maps.Marker({
         position: {
           lat: dataPoint.latitude,
@@ -97,23 +107,34 @@ export default class Map extends Component {
         label: this.determineMarker(dataPoint)
       });
       let infoWindow = new google.maps.InfoWindow();
-      marker.addListener("click", function() {
-        infoWindow.open(this.map, marker);
+      marker.addListener("click", () => {
+        this.props.onOpen(dataPoint);
       });
-      let contentString = `
-      <div id="content">
-      <h2 class="mapItemHeading">${dataPoint.contact}</h2>
-      <div id="bodyContent">
-      <p>Category: ${dataPoint.contact_type}</p
-      <p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
-      rel="noopener noreferrer">${dataPoint.location_1_address === undefined
-        ? ""
-        : dataPoint.location_1_address} ${dataPoint.location_1_city}, ${dataPoint.location_1_state}</a></p>
-        <p>Phone Number: <a href="tel:${dataPoint.phone_number}">${dataPoint.phone_number}</a></p>
-        </div>
-        </div>`;
-      infoWindow.setPosition(marker.position);
-      infoWindow.setContent(contentString);
+
+      if (dataPoint.isOpen) {
+        let contentString = `
+        <div id="content">
+        <h2 class="mapItemHeading">${dataPoint.contact}</h2>
+        <div id="bodyContent">
+        <p>Category: ${dataPoint.contact_type}</p
+        <p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
+        rel="noopener noreferrer">${dataPoint.location_1_address === undefined
+          ? ""
+          : dataPoint.location_1_address} ${dataPoint.location_1_city}, ${dataPoint.location_1_state}</a></p>
+          <p>Phone Number: <a href="tel:${dataPoint.phone_number}">${dataPoint.phone_number}</a></p>
+          </div>
+          </div>`;
+        infoWindow.setPosition(marker.position);
+        infoWindow.setContent(contentString);
+
+        infoWindow.open(this.map, marker);
+
+        infoWindow.addListener("closeclick", () => {
+          this.props.onClose(dataPoint);
+        });
+      }
+
+      return { marker, infoWindow };
     });
   }
 
