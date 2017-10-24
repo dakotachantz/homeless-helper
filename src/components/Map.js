@@ -50,7 +50,7 @@ export default class Map extends Component {
     });
   }
   zoomMap() {
-    this.map.setZoom(16);
+    this.map.setZoom(14);
   }
   centerMap() {
     this.map.setCenter(this.center);
@@ -106,24 +106,38 @@ export default class Map extends Component {
         map: this.map,
         label: this.determineMarker(dataPoint)
       });
-      let infoWindow = new google.maps.InfoWindow();
       marker.addListener("click", () => {
         this.props.onOpen(dataPoint);
       });
+      let infoWindow = new google.maps.InfoWindow();
 
       if (dataPoint.isOpen) {
         let contentString = `
         <div id="content">
         <h2 class="mapItemHeading">${dataPoint.contact}</h2>
         <div id="bodyContent">
-        <p>Category: ${dataPoint.contact_type}</p
-        <p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
+        <p>Category: ${dataPoint.contact_type}</p<br/>`;
+
+        let address =
+          dataPoint.location_1_address !== null
+            ? `<p>Address: <a href="http://maps.google.com/?q=${dataPoint.location_1_address}${dataPoint.location_1_city}${dataPoint.location_1_state}" target="_blank"
         rel="noopener noreferrer">${dataPoint.location_1_address === undefined
           ? ""
-          : dataPoint.location_1_address} ${dataPoint.location_1_city}, ${dataPoint.location_1_state}</a></p>
-          <p>Phone Number: <a href="tel:${dataPoint.phone_number}">${dataPoint.phone_number}</a></p>
-          </div>
-          </div>`;
+          : dataPoint.location_1_address} ${dataPoint.location_1_city}, ${dataPoint.location_1_state}</a></p>`
+            : "";
+
+        contentString += address;
+        let phoneNumber =
+          dataPoint.phone_number !== null
+            ? `<p>Phone Number: <a href="tel:${dataPoint.phone_number}">${dataPoint.phone_number}</a></p>`
+            : "";
+        contentString += phoneNumber;
+
+        let notes =
+          dataPoint.notes !== null ? `<p>Notes: ${dataPoint.notes}</p>` : "";
+
+        contentString += notes;
+        contentString += `</div>`;
         infoWindow.setPosition(marker.position);
         infoWindow.setContent(contentString);
 

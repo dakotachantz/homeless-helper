@@ -963,6 +963,21 @@ a {
   width: 100%;
 }
 
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 374px) and (max-device-width: 666px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* header {
+    background: blue;
+  } */
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+}
+
 @media (min-width: 469px) and (min-height: 469px) {
   .testimonial p {
     font-size: 18px;
@@ -1077,4 +1092,8 @@ a {
   width: 100%;
   padding: 3em 0;
   margin: 0;
+}
+
+#bodyContent p {
+  margin: 0 0 1em 0;
 }
