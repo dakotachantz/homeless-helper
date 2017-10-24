@@ -52,10 +52,10 @@ export default class Map extends Component {
     nextProps.filtered.forEach(dataPoint => {
       let marker = new google.maps.Marker({
         position: {
-          lat: dataPoint.location_1.coordinates[1],
-          lng: dataPoint.location_1.coordinates[0]
+          lat: dataPoint.latitude,
+          lng: dataPoint.longitude
         },
-        type: dataPoint.location_1.type,
+        type: "Point",
         map: map,
         label: this.determineMarker(dataPoint)
       });

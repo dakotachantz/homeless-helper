@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../img/logo-white.png";
-
+import MobileNav from "./MobileNav";
 export default class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -51,10 +51,7 @@ export default class NavBar extends Component {
           </div>
 
           <div className="mobile-nav">
-            <i
-              className="fa fa-bars"
-              style={{ fontSize: "2rem", color: "rgba(255, 255, 255, .7)" }}
-            />
+            <MobileNav />
           </div>
 
           <div className="inner-nav desktop-nav">

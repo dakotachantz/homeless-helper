@@ -4,6 +4,7 @@ import Map from "./Map";
 import resourceHeaderImg from "../img/resource-header.jpg";
 import reactScroll from "react-scroll";
 let Link = reactScroll.Link;
+let google = window.google;
 export default class ResourcesList extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +15,11 @@ export default class ResourcesList extends Component {
   }
 
   componentWillMount = () => {
+    const config = {
+      headers: { "Access-Control-Allow-Origin": "*" }
+    };
     axios
-      .get("https://data.nashville.gov/resource/8zc7-2afq.json")
+      .get("https://homeless-helper.herokuapp.com/allResources", config)
       .then(response => {
         let contactTypes = [
           "Food Assistance",
@@ -23,15 +27,36 @@ export default class ResourcesList extends Component {
           "Transportation",
           "Housing"
         ];
+        console.log("response.data ", response.data);
         let filteredItems = response.data.filter(
           item =>
-            item.location_1 !== undefined &&
-            contactTypes.indexOf(item.contact_type) > -1
+            item.latitude === undefined ||
+            (item.latitude !== 0 &&
+              contactTypes.indexOf(item.contact_type) > -1)
         );
+        console.log("Filtered Items", filteredItems);
+        let origin = new google.maps.LatLng(36.174, -86.767);
+        let destinationA = new google.maps.LatLng(36.166687, -86.779932);
+        // let destinationB = new google.maps.LatLng(50.087692, 14.42115);
+
+        let service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins: [origin],
+            destinations: [destinationA],
+            travelMode: "WALKING",
+            unitSystem: google.maps.UnitSystem.IMPERIAL
+          },
+          callback
+        );
+
+        function callback(response, status) {
+          console.log("RESPONSE", response);
+          // See Parsing the Results for
+          // the basics of a callback function.
+        }
+        filteredItems.sort((a, b) => a.contact.localeCompare(b.contact));
         this.setState({ data: filteredItems, filtered: filteredItems });
-      })
-      .catch(function(error) {
-        console.log(error);
       });
   };
 

@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "google-maps-react": "^1.1.0",
     "react": "^16.0.0",
+    "react-burger-menu": "^2.1.9",
     "react-dom": "^16.0.0",
     "react-google-maps": "^9.0.1",
     "react-google-maps-loader": "^3.0.1",
