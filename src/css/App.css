@@ -989,9 +989,6 @@ a {
 
 .bm-menu {
   background: #333;
-  /* background: rgba(27, 27, 27, 0.7);
-  background: #4e4e4e; */
-  padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   width: 300px;
 }
@@ -1008,25 +1005,35 @@ a {
 
 .bm-item-list {
   color: #b8b7ad;
-  padding: 0.8em;
+  width: 100%;
 }
 
-.mobile-ul li {
-  padding: 1em 0;
+.mobile-ul a {
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
 }
 
-.mobile-ul li a {
+.mobile-ul a:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.mobile-ul a {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   cursor: pointer;
   font-size: 22px;
+  padding: 1em;
+  width: 100%;
+  display: flex;
 }
 
-.mobile-ul li a:hover {
-  text-decoration: underline;
+.mobile-ul a:hover {
+  background: rgb(39, 39, 39);
 }
 
 .mobile-ul {
   list-style: none;
   height: 100%;
+  width: 100%;
+  padding: 3em 0;
+  margin: 0;
 }
