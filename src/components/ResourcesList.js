@@ -237,7 +237,7 @@ export default class ResourcesList extends Component {
             )}
           </span>
           <div className="google-map">
-            <Map data={this.state.data} filtered={this.state.filtered} />
+            <Map filtered={this.state.filtered} />
             <div className="detail">
               This is detail for the item you clicked on
             </div>
