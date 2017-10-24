@@ -10,8 +10,7 @@ export default class ResourcesList extends Component {
     super(props);
     this.state = {
       data: "",
-      filtered: "",
-      selectedService: {}
+      filtered: ""
     };
   }
 
