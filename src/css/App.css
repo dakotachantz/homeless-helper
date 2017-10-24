@@ -989,13 +989,17 @@ a {
 
 .bm-menu {
   background: #333;
-  background: rgba(27, 27, 27, 0.7);
+  /* background: rgba(27, 27, 27, 0.7);
+  background: #4e4e4e; */
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  width: 300px;
 }
 
 .bm-menu-wrap {
   top: 0px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .bm-morph-shape {

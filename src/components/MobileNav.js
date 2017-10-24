@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { slide as Menu } from "react-burger-menu";
+import { stack as Menu } from "react-burger-menu";
 import { NavLink } from "react-router-dom";
 export default class MobileNav extends Component {
   render() {
