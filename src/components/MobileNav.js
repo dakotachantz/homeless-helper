@@ -30,8 +30,11 @@ export default class MobileNav extends Component {
           <NavLink to="/findresources" className="mn-has-sub active">
             <li>Find Resources</li>
           </NavLink>
-          <NavLink to="/ourmission" className="mn-has-sub active">
-            <li>Our Mission</li>
+          <NavLink to="/aboutus" className="mn-has-sub active">
+            <li>About</li>
+          </NavLink>
+          <NavLink to="/addresource" className="mn-has-sub active">
+            <li>Add Resources</li>
           </NavLink>
         </ul>
       </Menu>

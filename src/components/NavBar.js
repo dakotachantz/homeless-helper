@@ -63,13 +63,13 @@ export default class NavBar extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/addresource" className="mn-has-sub active">
-                  Add Resources
+                <NavLink to="/aboutus" className="mn-has-sub active">
+                  About
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/aboutus" className="mn-has-sub active">
-                  About
+                <NavLink to="/addresource" className="mn-has-sub active">
+                  Add Resources
                 </NavLink>
               </li>
             </ul>
