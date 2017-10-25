@@ -1028,7 +1028,7 @@ a {
   margin: 0 0 1em 0;
 }
 .main-content {
-  min-height: 82vh;
+  min-height: 81.5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
