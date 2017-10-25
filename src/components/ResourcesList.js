@@ -90,7 +90,7 @@ export default class ResourcesList extends Component {
         >
           <h1
             className="font-alt"
-            style={{ position: "relative", zIndex: "100" }}
+            style={{ position: "relative", zIndex: "100", textAlign: "center" }}
           >
             Nashville Resources
           </h1>
