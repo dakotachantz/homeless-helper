@@ -79,7 +79,6 @@ export default class ResourcesList extends Component {
             backgroundImage: `url(${resourceHeaderImg})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            backgroundAttachment: "fixed",
             minHeight: "50vh",
             display: "flex",
             alignItems: "center",

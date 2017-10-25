@@ -497,8 +497,6 @@ a.btn-mod:focus {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-
-  padding: 140px 0;
 }
 .small-section {
   padding: 70px 0;
@@ -938,86 +936,11 @@ a {
 #mission {
   margin-top: auto;
   flex: 1;
+  /* background-attachment: fixed; */
 }
-
-/* #root {
-  height: 100%;
-}  */
-
-/* main {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-} */
 
 .icon-quote {
   display: none;
-}
-
-.main-content {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 374px) and (max-device-width: 666px) and (-webkit-min-device-pixel-ratio: 2) {
-  /* header {
-    background: blue;
-  } */
-}
-
-/* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-}
-
-/* Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
-}
-
-@media (min-width: 469px) and (min-height: 469px) {
-  .testimonial p {
-    font-size: 18px;
-  }
-}
-
-@media (min-height: 415px) {
-  .section-icon {
-    display: block;
-  }
-  .icon-quote {
-    display: block;
-  }
-}
-
-@media (min-width: 790px) {
-  .nav-tabs {
-    flex-direction: row;
-  }
-  .resources {
-    flex-direction: row;
-  }
-  .hs-line-1 {
-    letter-spacing: 51px;
-  }
-  .footer {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 992px) {
-  .nav-tabs {
-    flex-direction: row;
-  }
-  .inner-nav {
-    display: flex;
-  }
-  .mobile-nav {
-    display: none;
-  }
 }
 
 .bm-burger-button {
@@ -1096,4 +1019,69 @@ a {
 
 #bodyContent p {
   margin: 0 0 1em 0;
+}
+.main-content {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 400px) and (min-height: 469px) {
+  .testimonial p {
+    font-size: 18px;
+  }
+  header {
+    background-attachment: fixed;
+  }
+  .page-section {
+    padding: 140px 0;
+  }
+  .main-content {
+    min-height: 92vh;
+  }
+}
+
+@media (min-height: 415px) {
+  .section-icon {
+    display: block;
+  }
+  .icon-quote {
+    display: block;
+  }
+}
+
+@media (min-width: 790px) {
+  .nav-tabs {
+    flex-direction: row;
+  }
+  .resources {
+    flex-direction: row;
+  }
+  .hs-line-1 {
+    letter-spacing: 51px;
+  }
+  .footer {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-tabs {
+    flex-direction: row;
+  }
+  .inner-nav {
+    display: flex;
+  }
+  .mobile-nav {
+    display: none;
+  }
+}
+
+@media (min-height: 949px) {
+  .main-content {
+    min-height: 93vh;
+  }
 }

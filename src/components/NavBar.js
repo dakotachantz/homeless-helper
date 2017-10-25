@@ -22,7 +22,7 @@ export default class NavBar extends Component {
             document.body.parentNode ||
             document.body
           ).scrollTop;
-    if (scrollTop < 20) {
+    if (scrollTop < 100) {
       this.setState({
         backgroundColor: "transparent"
       });
