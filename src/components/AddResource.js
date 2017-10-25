@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 export default class AddResource extends Component {
   render() {
-    return <div>This page is coming soon!</div>;
+    return (
+      <div>
+        <h3 className="font-alt">...Coming Soon</h3>
+      </div>
+    );
   }
 }

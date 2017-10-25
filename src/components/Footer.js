@@ -18,7 +18,11 @@ export default class Footer extends Component {
                 &nbsp;Dakota Nichols
               </a>
               &nbsp;&
-              <a target="_blank" rel="noopener noreferrer">
+              <a
+                href="http://hamiltonmoore.surge.sh/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 &nbsp;Hamilton Moore
               </a>
             </div>
