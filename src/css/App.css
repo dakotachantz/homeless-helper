@@ -135,7 +135,8 @@ a {
   color: #111;
   text-decoration: underline;
 }
-a:hover {
+a:hover,
+a:visited {
   color: #888;
   text-decoration: underline;
 }
@@ -1027,7 +1028,7 @@ a {
   margin: 0 0 1em 0;
 }
 .main-content {
-  min-height: 80vh;
+  min-height: 82vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
