@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Mission } from "../components";
-export default class MissionView extends Component {
+import { AddResource } from "../components";
+export default class AddResourcesView extends Component {
   componentDidMount() {
-    if (this.props.location.pathname === "/ourmission") {
+    if (this.props.location.pathname === "/addresource") {
       let nav = document.querySelector("nav");
       nav.style.backgroundColor = "rgba(27, 27, 27, .7)";
     }
@@ -11,8 +11,7 @@ export default class MissionView extends Component {
     let nav = document.querySelector("nav");
     nav.style.backgroundColor = "transparent";
   }
-
   render() {
-    return <Mission />;
+    return <AddResource />;
   }
 }

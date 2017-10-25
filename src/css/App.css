@@ -730,6 +730,10 @@ a.btn-mod:focus {
   font-size: 14px;
 }
 
+.text-mute {
+  color: #636c72 !important;
+  font-size: 15px !important;
+}
 /*
  * Logotypes
  */
@@ -802,6 +806,8 @@ a.btn-mod:focus {
 .footer {
   text-align: center;
   font-size: 10px;
+  display: flex;
+  justify-content: center;
 }
 .footer a {
   color: #888;

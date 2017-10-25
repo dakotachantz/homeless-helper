@@ -92,7 +92,7 @@ export default class ResourcesList extends Component {
             className="font-alt"
             style={{ position: "relative", zIndex: "100" }}
           >
-            Find Resources
+            Nashville Resources
           </h1>
         </header>
         <section
@@ -105,7 +105,7 @@ export default class ResourcesList extends Component {
         >
           <div className="container relative">
             <h2 className="section-title font-alt mb-70 mb-sm-40">
-              Filter By Resource
+              Choose Resource
             </h2>
             <ul className="nav nav-tabs tpl-alt-tabs font-alt pt-30 pt-sm-0 pb-30 pb-sm-0">
               <li>

@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import "./css/App.css";
 import { BaseLayout } from "./components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { HomeView, MissionView, ResourcesView } from "./containers";
+import {
+  HomeView,
+  AboutView,
+  ResourcesView,
+  AddResourceView
+} from "./containers";
 class App extends Component {
   render() {
     return (
@@ -12,7 +17,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomeView} />
               <Route path="/findresources" component={ResourcesView} />
-              <Route path="/ourmission" component={MissionView} />
+              <Route path="/aboutus" component={AboutView} />
+              <Route path="/addresource" component={AddResourceView} />
             </Switch>
           </BaseLayout>
         </BrowserRouter>
