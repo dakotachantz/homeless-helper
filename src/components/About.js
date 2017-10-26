@@ -24,15 +24,13 @@ export default class About extends Component {
                     the Nashville Area.
                   </p>
                   <p>
-                    If you would to see Homeless Helper in your city send us an
-                    email at&nbsp;
+                    If you would like to see Homeless Helper in your city send
+                    us an email at&nbsp;
                     <a href="mailto:admin@homelesshelper.co">
                       admin@homelesshelper.co
                     </a>.
                   </p>
-                  <p className="text-mute">
-                    *Data sourced from City of Nashville Open Data API*
-                  </p>
+                  <p className="text-mute">*Data sourced from Open Data API*</p>
                 </blockquote>
               </div>
             </div>
