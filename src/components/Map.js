@@ -42,10 +42,10 @@ export default class Map extends Component {
   }
 
   drawMap() {
-    // if(this.props.selectedService.location) this.center = selectedService.loc
     this.map = new google.maps.Map(this.mapEl, {
       center: this.center,
       zoom: 12,
+      mapTypeControl: false,
       styles: mapStyles
     });
   }

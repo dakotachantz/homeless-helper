@@ -31,7 +31,7 @@ export default class About extends Component {
                     </a>.
                   </p>
                   <p className="text-mute">
-                    *Data sourced from City of Nashville Public API*
+                    *Data sourced from City of Nashville Open Data API*
                   </p>
                 </blockquote>
               </div>
