@@ -68,6 +68,10 @@ export default class Map extends Component {
 
   determineMarker = dataPoint => {
     let label = {};
+    if (dataPoint.contact_type === "Job Training & Placement") {
+      label.fontFamily = "Fontawesome";
+      label.text = "\uf0b1";
+    }
     if (dataPoint.contact_type === "Food Assistance") {
       label.fontFamily = "Fontawesome";
       label.text = "\uf0f5";

@@ -25,7 +25,8 @@ export default class ResourcesList extends Component {
           "Food Assistance",
           "Clothing",
           "Transportation",
-          "Housing"
+          "Housing",
+          "Job Training & Placement"
         ];
         let filteredItems = response.data.filter(
           item =>
@@ -43,7 +44,8 @@ export default class ResourcesList extends Component {
       "Food Assistance",
       "Clothing",
       "Transportation",
-      "Housing"
+      "Housing",
+      "Job Training & Placement"
     ];
     contactTypes.forEach(contactType => {
       if (resourceType === contactType) {
@@ -123,6 +125,26 @@ export default class ResourcesList extends Component {
                     <span className="ionicons ion-android-globe" />
                   </div>
                   All
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => {
+                    this.getResources("Job Training & Placement");
+                  }}
+                  to="resources"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={700}
+                >
+                  <div
+                    className="alt-tabs-icon"
+                    style={{ marginBottom: "13px" }}
+                  >
+                    <span className="fa fa-briefcase" />
+                  </div>
+                  Job Training
                 </Link>
               </li>
               <li>
